@@ -1,6 +1,6 @@
 {
   "name": "useyup",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "license": "MIT",
@@ -19,16 +19,18 @@
     "useyup"
   ],
   "scripts": {
-    "test": "",
+    "test": "jest",
     "build": "tsc",
-    "lint": "",
     "prepare": "yarn build",
-    "prepublishOnly": "yarn test && yarn lint",
-    "preversion": "yarn lint && yarn build && yarn test",
+    "prepublishOnly": "yarn test",
+    "preversion": "yarn build && yarn test",
     "version": "git add -A src",
     "postversion": "git push && git push --tags"
   },
   "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "jest": "^27.3.1",
+    "ts-jest": "^27.0.7",
     "typescript": "^4.4.4"
   }
 }
