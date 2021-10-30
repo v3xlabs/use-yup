@@ -1,17 +1,19 @@
 import { NextFunction, Request, RequestHandler } from "express";
 import { AnySchema, InferType, ValidationError } from "yup";
 
-export type ValidatedRequest<T extends AnySchema> = Request & {
-    data?: InferType<T> | Promise<InferType<T>>
+export type UseYupRequest<T extends AnySchema> = UseYupObject<T, Request>;
+
+export type UseYupObject<T extends AnySchema, R> = R & {
+    yupData?: InferType<T>
 }
 
-export const useYup = <T extends AnySchema>(schema: T, selectorFn: (req: Request) => { [k: string]: any } = (req) => req.body): RequestHandler => {
-    return (req: ValidatedRequest<T>, res, next: NextFunction) => {
-        try {
-            req.data = schema.validate(selectorFn(req), { abortEarly: false });
+export const useYup = <T extends AnySchema>(schema: T, selectorFn: (req: Request) => unknown = (req) => req.body): RequestHandler => {
+    return (req: UseYupRequest<T>, res, next: NextFunction) => {
+        schema.validate(selectorFn(req), { abortEarly: false }).then((data) => {
+            req.yupData = data;
             next();
-        } catch (e) {
-            throw e;
-        }
+        }).catch((e: ValidationError) => {
+            next(e);
+        });
     }
 }
