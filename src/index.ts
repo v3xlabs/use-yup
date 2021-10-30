@@ -7,7 +7,11 @@ export type ValidatedRequest<T extends AnySchema> = Request & {
 
 export const useYup = <T extends AnySchema>(schema: T, selectorFn: (req: Request) => { [k: string]: any } = (req) => req.body): RequestHandler => {
     return (req: ValidatedRequest<T>, res, next: NextFunction) => {
-        req.data = schema.validate(selectorFn(req), { abortEarly: false });
-        next();
+        try {
+            req.data = schema.validate(selectorFn(req), { abortEarly: false });
+            next();
+        } catch (e) {
+            throw e;
+        }
     }
 }
