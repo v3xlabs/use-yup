@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "license": "MIT",
+  "license": "GPL-3.0",
   "description": "Yup validation express middlewere and react hook",
   "repository": "https://github.com/lvkdotsh/useyup.git",
   "author": "Lucemans <luc@lucemans.nl>",
