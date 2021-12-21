@@ -1,6 +1,6 @@
 # useYup
 
-The friendly typescript-compatible express middleware and react hook.
+The friendly typescript-compatible express middleware.
 
 ## Installation
 

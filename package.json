@@ -4,7 +4,7 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "license": "GPL-3.0",
-  "description": "Yup validation express middlewere and react hook",
+  "description": "Yup validation express middlewere",
   "repository": "https://github.com/lvkdotsh/useyup.git",
   "author": "Lucemans <luc@lucemans.nl>",
   "files": [
@@ -13,8 +13,6 @@
   "keywords": [
     "yup",
     "express",
-    "react",
-    "hook",
     "middlewere",
     "useyup"
   ],
